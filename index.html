@@ -49,7 +49,7 @@
             color: #6366f1;
         }
 
-        /* Hero Section */
+        /* Hero Section - Updated with Image */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -57,8 +57,20 @@
             justify-content: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            text-align: center;
-            padding: 6rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
         }
 
         .hero-content h1 {
@@ -76,10 +88,80 @@
         .hero-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
             animation: fadeInUp 1s ease 0.4s backwards;
             flex-wrap: wrap;
         }
+
+        .hero-image {
+position: relative;
+animation: fadeInRight 1s ease 0.3s backwards;
+}
+
+.image-wrapper {
+position: relative;
+width: 100%;
+max-width: 400px;
+margin: 0 auto;
+}
+
+.image-placeholder {
+width: 100%;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 20px;
+border: 3px solid rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(10px);
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+position: relative;
+overflow: hidden;
+padding: 0.3rem; /* reduced from 1rem to minimize top space */
+}
+
+.image-placeholder img {
+width: 100%;
+height: auto;
+border-radius: 15px;
+display: block;
+position: relative;
+z-index: 2;
+margin-top: -230px; /* slightly pulls image upward */
+}
+
+.image-placeholder::before {
+content: '';
+position: absolute;
+top: -50%;
+left: -100%;
+width: 200%;
+height: 200%;
+background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+animation: shimmer 3s infinite;
+z-index: 1;
+}
+
+.decorative-blob {
+position: absolute;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.1);
+filter: blur(40px);
+animation: float 6s ease-in-out infinite;
+}
+
+.blob-1 {
+width: 300px;
+height: 200px;
+top: -30px; /* moved blob slightly closer to reduce gap */
+right: -50px;
+animation-delay: 0s;
+}
+
+.blob-2 {
+width: 200px;
+height: 200px;
+bottom: -30px;
+left: -30px;
+animation-delay: 2s;
+}
+
 
         .btn {
             padding: 0.8rem 2rem;
@@ -110,7 +192,7 @@
 
         /* Section Styles */
         section {
-            padding: 5rem 2rem;
+            padding: 2rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -270,6 +352,44 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
+        /* Certificates Section - New */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .certificate-icon {
+            font-size: 1.5rem;
+        }
+
+        .certificate-card p {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
         /* Experience Section */
         .experience-grid {
             display: grid;
@@ -392,14 +512,60 @@
             }
         }
 
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
             .hero-content h1 {
                 font-size: 2.2rem;
             }
 
             .hero-content p {
                 font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .image-wrapper {
+                max-width: 300px;
             }
 
             h2 {
@@ -420,20 +586,33 @@
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#certificates">Certificates</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Updated with Image Layout -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Madhumitha R</h1>
-            <p>Computer Science Engineer | Full Stack Developer</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Beyond the brief✨ Beneath the surface🚀🌍!!!</h1>
+                <h1>Madhumitha R</h1>
+                <p>Software Engineer | Full Stack Developer</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="decorative-blob blob-1"></div>
+                <div class="decorative-blob blob-2"></div>
+                <div class="image-wrapper">
+                    <div class="image-placeholder">
+                        <img src="profile.jpg" alt="Madhumitha R" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -553,6 +732,45 @@
                     <span class="tech-tag">Firebase</span>
                 </div>
             </div>
+
+            <div class="card project-card">
+                <h3>Fascinating Invitation Cards</h3>
+                <p class="project-date">Jan 2024</p>
+                <p>A personalized wedding invitation website with event details, RSVP, gallery and gift registry, featuring an elegant, mobile-friendly design. Users can also create their own card designs directly on the site for a more personalized experience.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Html</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">MongoDB</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section - New -->
+    <section id="certificates">
+        <h2>Certificates & Achievements</h2>
+        <div class="certificates-grid">
+            <div class="card certificate-card">
+                <h3><span class="certificate-icon">🎓</span> Full Stack Development</h3>
+                <p>Certificate of Completion in Full Stack Development</p>
+                <p>Comprehensive training covering MERN stack, RESTful APIs, database management, and modern web development practices.</p>
+                <p class="certificate-date">Arttifai Tech</p>
+            </div>
+
+            <div class="card certificate-card">
+                <h3><span class="certificate-icon">🐍</span> Python Programming</h3>
+                <p>Certificate of Completion in Python Programming</p>
+                <p>Advanced Python programming covering data structures, algorithms, OOP concepts, and application development.</p>
+                <p class="certificate-date">Professional Certification</p>
+            </div>
+
+            <div class="card certificate-card">
+                <h3><span class="certificate-icon">🤖</span> Python with AI Workshop</h3>
+                <p>Certificate of Completion in Python Using AI</p>
+                <p>Specialized training in artificial intelligence and machine learning using Python, including practical AI implementations.</p>
+                <p class="certificate-date">AI Workshop Series</p>
+            </div>
         </div>
     </section>
 
@@ -567,20 +785,13 @@
             </div>
 
             <div class="card experience-card">
-                <h3>Industrial Visit</h3>
-                <p class="experience-date">NEXA, Cochin | April 2024</p>
-                <p>Explored industry practices and gained insights into professional software development environments. Learned about modern development workflows and industry best practices.</p>
-            </div>
-
-            <div class="card experience-card">
                 <h3>Event Organizer</h3>
                 <p class="experience-date">Go Through My Eyes | March 2025</p>
                 <p>Successfully organized and managed campus events, demonstrating leadership and coordination skills. Led a team of volunteers and ensured smooth execution of all activities.</p>
             </div>
 
             <div class="card experience-card">
-                <h3>IEEE Student Branch Member</h3>
-                <p class="experience-date">2025</p>
+                <h3>IEEE Student Branch Member (2025)</h3>
                 <p>Active member contributing to technical events and collaborative learning initiatives. Participated in workshops, seminars, and networking events to enhance technical knowledge.</p>
             </div>
         </div>
